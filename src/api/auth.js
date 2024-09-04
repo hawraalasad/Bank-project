@@ -38,13 +38,13 @@ const logout = () => {
 };
 
 const me = async () => {
-  const { data } = await instance.get("/auth/me");
+  const { data } = await instance.get("/mini-project/api/auth/me");
   return data;
 };
 
 const getAllUsers = async () => {
-  const { data } = await instance.get("/auth/users");
+  const { data } = await instance.get("/mini-project/api/auth/users");
   return data;
 };
 
-export { login, register, me, getAllUsers };
+export { login, register, me, getAllUsers, logout };

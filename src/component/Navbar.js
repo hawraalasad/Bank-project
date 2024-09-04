@@ -2,9 +2,15 @@ import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useContext } from "react";
 import UserContext from "../context/UserContext";
+import { logout } from "../api/auth";
 
 const Navbar = () => {
   const [user, setUser] = useContext(UserContext);
+
+  const handleLogout = () => {
+    logout();
+    setUser(false);
+  };
 
   return (
     <nav className="bg-black flex justify-center items-center">
@@ -37,18 +43,32 @@ const Navbar = () => {
                 Profile
               </NavLink>
               <>
-                <NavLink
-                  to="/login"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Login
-                </NavLink>
-                <NavLink
-                  to="/register"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Register
-                </NavLink>
+                {user ? (
+                  <>
+                    <button
+                      to="/login"
+                      onClick={handleLogout}
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      Logout
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <NavLink
+                      to="/login"
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      Login
+                    </NavLink>
+                    <NavLink
+                      to="/register"
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      Register
+                    </NavLink>
+                  </>
+                )}
               </>
             </div>
           </div>
