@@ -24,27 +24,28 @@ const Navbar = () => {
               >
                 Home
               </NavLink>
-              <NavLink
-                to="/transaction"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-              >
-                Transaction
-              </NavLink>
-              <NavLink
-                to="/users"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-              >
-                Users
-              </NavLink>
-              <NavLink
-                to="/profile"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-              >
-                Profile
-              </NavLink>
+
               <>
                 {user ? (
                   <>
+                    <NavLink
+                      to="/transaction"
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      Transaction
+                    </NavLink>
+                    <NavLink
+                      to="/profile"
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      Profile
+                    </NavLink>
+                    <NavLink
+                      to="/users"
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      Users
+                    </NavLink>
                     <button
                       to="/login"
                       onClick={handleLogout}

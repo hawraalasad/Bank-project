@@ -19,13 +19,15 @@ const User = () => {
               className="bg-gray-700 p-6 rounded-md flex flex-col items-center justify-center"
             >
               <img
-                src={user.image}
+                src={
+                  "https://react-bank-project.eapi.joincoded.com/" + user.image
+                }
                 alt="User"
                 className="w-24 h-24 rounded-full mb-4"
               />
               <div className="text-center">
                 <h3 className="text-lg text-white font-semibold mb-2">
-                  {user.name}
+                  {user.username}
                 </h3>
                 <p className="text-gray-300">{user.email}</p>
               </div>

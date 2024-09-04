@@ -3,75 +3,34 @@ import { useMutation } from "@tanstack/react-query";
 import { login } from "../api/auth";
 import { getAllUsers } from "../api/auth";
 import user from "./Users";
+import { useQuery } from "@tanstack/react-query";
+import { me } from "../api/auth";
+
 const Profile = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [userProfile, setUserProfile] = useState({
-    username: "",
-    profilePicture: "",
-    bankBalance: 0,
+  const { data: myself } = useQuery({
+    queryKey: ["me"],
+    queryFn: me,
   });
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-    // Mock authentication - replace with real authentication logic
-    if (username === "user" && password === "password") {
-      setIsLoggedIn(true);
-      setUserProfile({
-        username: "user",
-        profilePicture: "https://via.placeholder.com/150", // Placeholder image
-        bankBalance: 1000, // Mock balance
-      });
-    } else {
-      alert("Invalid credentials");
-    }
-  };
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    setUsername("");
-    setPassword("");
-    setUserProfile({
-      username: "",
-      profilePicture: "",
-      bankBalance: 0,
-    });
-  };
+  console.log(myself);
 
   return (
-    <div>
-      {/* {!isLoggedIn ? (
-        <form onSubmit={handleLogin}>
-          <h2>Login</h2>
-          <input
-            type="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-          <div>
-            <label>Password: </label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <button type="submit">Log In</button>
-        </form>
-      ) : ( */}
+    <div key={myself?.id}>
       <div>
-        <h2>User Profile</h2>
+        <div key={myself?.id}>
+          <img
+            src={
+              "https://react-bank-project.eapi.joincoded.com/" + myself?.image
+            }
+          />
+        </div>
+        ;<h2>{myself?.username} Profile</h2>
         <img
-          src={userProfile.profilePicture}
-          alt={`${userProfile.username}'s profile`}
+          src={myself?.image}
+          alt="profile picture"
           style={{ width: "150px", height: "150px", borderRadius: "50%" }}
         />
-        <p>Username: {userProfile.username}</p>
-        <p>Bank Balance: ${userProfile.bankBalance}</p>
-        {/* <button onClick={handleLogout}>Log Out</button> */}
+        <p>Username: {myself?.username}</p>
+        <p>Bank Balance</p>
       </div>
     </div>
   );

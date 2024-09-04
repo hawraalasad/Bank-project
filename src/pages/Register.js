@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { register } from "../api/auth";
 import gringotts from "../assets/media/Untitled design (11).png";
+import UserContext from "../context/UserContext";
+import { Navigate } from "react-router-dom";
+import { checkToken } from "../api/storage";
 
 const Register = () => {
   const [userInfo, setUserInfo] = useState({});
+  const [user, setUser] = useContext(UserContext);
 
   const handleChange = (e) => {
     if (e.target.name === "image") {
@@ -16,6 +20,9 @@ const Register = () => {
   const { mutate: registerMutate } = useMutation({
     mutationKey: ["register"],
     mutationFn: () => register(userInfo),
+    onSuccess: () => {
+      setUser(checkToken());
+    },
   });
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -24,6 +31,7 @@ const Register = () => {
     console.log(userInfo);
   };
 
+  if (user) return <Navigate to={"/"} />;
   return (
     <div className="bg-black text-white h-[100vh]  ">
       <div>

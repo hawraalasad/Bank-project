@@ -4,7 +4,7 @@ import { login } from "../api/auth";
 import { Navigate } from "react-router-dom";
 import UserContext from "../context/UserContext";
 import { instance } from "../api";
-import { setToken } from "../api/storage";
+import { checkToken, setToken } from "../api/storage";
 
 const Login = () => {
   const [userInfo, setUserInfo] = useState({});
@@ -18,7 +18,7 @@ const Login = () => {
     mutationKey: ["login"],
     mutationFn: () => login(userInfo),
     onSuccess: () => {
-      setUser(true);
+      setUser(checkToken());
     },
   });
 
@@ -38,15 +38,15 @@ const Login = () => {
         <form onSubmit={handleFormSubmit}>
           <div className="mb-4">
             <label
-              htmlFor="email"
+              htmlFor="username"
               className="block text-white text-sm font-medium mb-2"
             >
-              Email
+              Username
             </label>
             <input
-              type="email"
-              name="email"
-              id="email"
+              type="username"
+              name="username"
+              id="username"
               onChange={handleChange}
               className="w-full px-4 py-2 border border-gray-700 rounded-md focus:outline-none focus:ring-2 text-black focus:ring-blue-500"
               required
