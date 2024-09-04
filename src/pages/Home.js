@@ -1,12 +1,14 @@
 import React from "react";
+import image from "../assets/media/Untitled design (11).png";
 
 const Home = () => {
   //console.log(user);
   return (
-    <div className="bg-gray-900 text-white min-h-screen flex items-center justify-center">
-      <div className="max-w-3xl text-center">
-        <h1 className="text-6xl font-bold mb-8">Welcome to our Bank</h1>
-        <p className="text-2xl leading-relaxed text-left">HIIII</p>
+    <div className="bg-black text-white min-h-screen flex items-center justify-center">
+      <div className="max-w-3xl flex justify-center items-center flex-col">
+        <h1 className="text-6xl font-bold mb-8">Welcome to Gringotts </h1>
+        <img src={image} alt="image" />
+        <p className="text-2xl leading-relaxed text-left"></p>
       </div>
     </div>
   );
