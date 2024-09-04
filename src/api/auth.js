@@ -3,7 +3,10 @@ import { setToken } from "./storage";
 
 const login = async (userInfo) => {
   try {
-    const { data } = await instance.post("/auth/login", userInfo);
+    const { data } = await instance.post(
+      "/mini-project/api/auth/login",
+      userInfo
+    );
     setToken(data.token); // <--- This
     return data;
   } catch (error) {
@@ -15,9 +18,14 @@ const register = async (userInfo) => {
   try {
     //This is for seding the request with files
     const formData = new FormData();
-    for (const key in userInfo) formData.append(key, userInfo[key]);
+    for (const key in userInfo) {
+      formData.append(key, userInfo[key]);
+    }
     // END
-    const { data } = await instance.post("/auth/register", formData);
+    const { data } = await instance.post(
+      "/mini-project/api/auth/register",
+      formData
+    );
     setToken(data.token); // <--- This
     return data;
   } catch (error) {

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
+import { login } from "../api/auth";
 import { instance } from "../api";
 import { setToken } from "../api/storage";
 
@@ -12,7 +13,7 @@ const Login = () => {
 
   const { mutate: handleLogin } = useMutation({
     mutationKey: ["login"],
-    mutationFn: () => Login(userInfo),
+    mutationFn: () => login(userInfo),
   });
 
   const handleFormSubmit = (e) => {
@@ -22,9 +23,11 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-gray-900 min-h-screen flex items-center justify-center absolute inset-0 z-[-1]">
-      <div className="max-w-md w-full px-6 py-8 bg-gray-800 rounded-md shadow-md">
-        <h2 className="text-3xl text-white font-semibold mb-6">Login</h2>
+    <div className="bg-black text-white h-[100vh]  ">
+      <div className="max-w-md w-full px-6 py-8 bg-black rounded-md shadow-md">
+        <h2 className="text-3xl text-white font-semibold mb-6">
+          Unlock your vault
+        </h2>
         <form onSubmit={handleFormSubmit}>
           <div className="mb-4">
             <label
@@ -38,7 +41,7 @@ const Login = () => {
               name="email"
               id="email"
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 border border-gray-700 rounded-md focus:outline-none focus:ring-2 text-black focus:ring-blue-500"
               required
             />
           </div>
@@ -54,7 +57,7 @@ const Login = () => {
               type="password"
               id="password"
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 border border-gray-700 rounded-md focus:outline-none focus:ring-2 text-black focus:ring-blue-500"
               required
             />
           </div>

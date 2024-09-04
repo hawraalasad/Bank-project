@@ -8,7 +8,7 @@ import { createBrowserRouter, Router, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import User from "./pages/Users";
+import Users from "./pages/Users";
 const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const router = createBrowserRouter([
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/users",
-        element: <User />,
+        element: <Users />,
       },
     ],
   },
