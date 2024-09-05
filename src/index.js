@@ -11,6 +11,7 @@ import Register from "./pages/Register";
 import Users from "./pages/Users";
 
 import Profile from "./pages/Profile";
+import Home2 from "./pages/Home2";
 const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const router = createBrowserRouter([
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
+      { path: "/home2", element: <Home2 /> },
       {
         path: "/login",
         element: <Login />,

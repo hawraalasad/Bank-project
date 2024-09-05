@@ -11,26 +11,21 @@ const Profile = () => {
     queryKey: ["me"],
     queryFn: me,
   });
-  console.log(myself);
 
   return (
     <div key={myself?.id}>
       <div>
-        <div key={myself?.id}>
+        <div className="flex justify-center items-center">
           <img
             src={
               "https://react-bank-project.eapi.joincoded.com/" + myself?.image
             }
+            className="w-[25%]"
           />
         </div>
-        ;<h2>{myself?.username} Profile</h2>
-        <img
-          src={myself?.image}
-          alt="profile picture"
-          style={{ width: "150px", height: "150px", borderRadius: "50%" }}
-        />
+        <h2>{myself?.username} Profile</h2>
         <p>Username: {myself?.username}</p>
-        <p>Bank Balance</p>
+        <p>Bank Balance: ${myself?.balance}</p>
       </div>
     </div>
   );

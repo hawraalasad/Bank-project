@@ -28,7 +28,8 @@ const Login = () => {
     handleLogin();
   };
 
-  if (user) return <Navigate to={"/"} />;
+  if (user) return <Navigate to={"/home2"} />;
+
   return (
     <div className="bg-black text-white h-[100vh]  ">
       <div className="max-w-md w-full px-6 py-8 bg-black rounded-md shadow-md">

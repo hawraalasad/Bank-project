@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { useContext } from "react";
 import UserContext from "../context/UserContext";
 import { logout } from "../api/auth";
+import { Navigate } from "react-router-dom";
 
 const Navbar = () => {
   const [user, setUser] = useContext(UserContext);
@@ -10,6 +11,7 @@ const Navbar = () => {
   const handleLogout = () => {
     logout();
     setUser(false);
+    <Navigate to={"/"} />;
   };
 
   return (
@@ -18,16 +20,15 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           <div className="block">
             <div className="ml-10 flex items-baseline space-x-4">
-              <NavLink
-                to="/"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-              >
-                Home
-              </NavLink>
-
               <>
                 {user ? (
                   <>
+                    <NavLink
+                      to="/home2"
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      Home
+                    </NavLink>
                     <NavLink
                       to="/transaction"
                       className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
@@ -56,6 +57,12 @@ const Navbar = () => {
                   </>
                 ) : (
                   <>
+                    <NavLink
+                      to="/"
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      Home
+                    </NavLink>
                     <NavLink
                       to="/login"
                       className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"

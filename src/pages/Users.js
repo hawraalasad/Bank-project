@@ -1,12 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import { getAllUsers } from "../api/auth";
+import ProfileModal from "./ProfileModal";
 
 const User = () => {
   const { data: users } = useQuery({
     queryKey: ["users"],
     queryFn: getAllUsers,
   });
+  const [modal, setModal] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   return (
     <div className="bg-black min-h-screen h-screen flex items-center justify-center absolute inset-0 z-[-1]">
@@ -30,6 +33,14 @@ const User = () => {
                   {user.username}
                 </h3>
                 <p className="text-gray-300">{user.email}</p>
+                <h1>Balance: ${user.balance}</h1>
+                <button
+                  className="hover:bg-white rounded w-[100px] h-[33px]"
+                  onClick={() => setIsVisible(true)}
+                >
+                  Transfer
+                </button>
+                {isVisible && <ProfileModal closeModal={setIsVisible} />}
               </div>
             </div>
           ))}
