@@ -42,9 +42,14 @@ const me = async () => {
   return data;
 };
 
+const transactions = async () => {
+  const { data } = await instance.get("/mini-project/api/transactions/my");
+  return data;
+};
+
 const getAllUsers = async () => {
   const { data } = await instance.get("/mini-project/api/auth/users");
   return data;
 };
 
-export { login, register, me, getAllUsers, logout };
+export { login, register, me, getAllUsers, logout, transactions };
