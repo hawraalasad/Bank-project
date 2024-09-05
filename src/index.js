@@ -9,7 +9,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Users from "./pages/Users";
-
+import Transaction from "./pages/Transaction";
 import Profile from "./pages/Profile";
 import Home2 from "./pages/Home2";
 const queryClient = new QueryClient();
@@ -39,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile />,
+      },
+      {
+        path: "/transaction",
+        element: <Transaction />,
       },
     ],
   },

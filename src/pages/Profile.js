@@ -13,19 +13,24 @@ const Profile = () => {
   });
 
   return (
-    <div key={myself?.id}>
-      <div>
-        <div className="flex justify-center items-center">
+    <div
+      className="bg-black text-white min-h-screen flex justify-center items-center h-[100vh]"
+      key={myself?.id}
+    >
+      <div className=" py-8 border-4 border-white rounded-2xl w-[50%] h-[60%]">
+        <div className=" flex justify-center items-center" key={myself?.id}>
           <img
             src={
               "https://react-bank-project.eapi.joincoded.com/" + myself?.image
             }
-            className="w-[25%]"
+            className="w-[50%] h-[50%] rounded-2xl mb-4"
           />
         </div>
-        <h2>{myself?.username} Profile</h2>
-        <p>Username: {myself?.username}</p>
-        <p>Bank Balance: ${myself?.balance}</p>
+        <div className="">
+          <h2 className="py-2">{myself?.username} Profile</h2>
+          <p className="py-2">Username: {myself?.username}</p>
+          <p className="py-2">Bank Balance: {myself?.balance} </p>
+        </div>
       </div>
     </div>
   );
