@@ -67,19 +67,19 @@ const Profile = () => {
   };
   return (
     <div
-      className="bg-black text-white min-h-screen flex justify-center items-center h-[100vh] flex-col"
+      className="bg-black text-white min-h-screen flex justify-center items-center h-[100vh] flex-col hp-font"
       key={myself?.id}
     >
-      <div className="flex flex-row">
-        <img src={sortingHat} alt="sorting hat" className="size-[120px] m-4" />
+      <div className="flex">
+        <img src={sortingHat} alt="sorting hat" className="size-[120px] m-2" />
         <button
-          className="bg-[#a79b8d] text-black m-7 w-[300px] h-[100px] rounded-[30px] hover:rounded-xl transition-all duration-100 ease-in-out"
+          className="bg-[#a79b8d] text-black m-7 w-[300px] h-[100px] rounded-[30px] hover:rounded-xl transition-all duration-100 ease-in-out text-4xl"
           onClick={() => sort()}
         >
           Try on the Sorting Hat
         </button>
       </div>
-      <div className=" py-8 border-4 border-white rounded-2xl w-[60%] h-[70%]">
+      <div className=" py-8 border-4 border-white rounded-2xl w-[60%] h-[70%] p-6">
         <div className=" flex justify-center items-center" key={myself?.id}>
           <img
             src={
@@ -88,15 +88,15 @@ const Profile = () => {
             className="w-[40%] h-[40%] rounded-2xl mb-4"
           />
         </div>
-        <div className="">
+        <div className="flex justify-center items-center flex-col text-5xl">
           <h2 className="py-2">{myself?.username} </h2>
 
           <p className="py-2">Balance: {myself?.balance} Galleons</p>
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center text-3xl">
             <button className="hover:bg-[#5e564e] hover:text-white px-3 py-2 rounded-3xl h-[60px] w-[140px] text-center bg-[#a79b8d] text-black m-4">
               Earn Galleons
             </button>
-            <button className=" hover:bg-[#5e564e] hover:text-white px-3 py-2 rounded-3xl  h-[60px] w-[140px] text-center bg-[#a79b8d] text-black m-4">
+            <button className=" hover:bg-[#5e564e] hover:text-white px-3 py-2 rounded-3xl  h-[60px] w-[140px] text-center bg-[#a79b8d] text-black m-4 ">
               Cast A Spell
             </button>
           </div>

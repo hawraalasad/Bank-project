@@ -7,6 +7,7 @@ import React, { useState, useEffect } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 //import { register } from "../api/auth";
 import { checkToken, getToken } from "./api/storage.js";
+import "./css/hp.css";
 
 function App() {
   const [user, setUser] = useState(false);

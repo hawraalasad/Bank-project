@@ -35,31 +35,34 @@ const DepositModal = ({ onClose, isVisible }) => {
   }
 
   return (
-    <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-10">
+    <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-10 text-5xl">
       {/* This div is for the Modal card */}
       <div className="text-white bg-black p-[20px] rounded-md flex flex-col">
-        <h1>Deposit Galleons to your account</h1>
+        <h1 className="m-6">Deposit Galleons to your account</h1>
+
         <form onSubmit={handleSubmitAndClose}>
-          <label>Amount:</label>
-          <input
-            className="text-black"
-            type="number"
-            required
-            placeholder="enter amount"
-            onChange={handleInputChange}
-          />
-          <div className="flex flex-col">
+          <div className="flex flex-col text-5xl">
+            <label className="m-2">Amount:</label>
+            <input
+              className="text-black p-3 rounded-2xl m-2"
+              type="number"
+              required
+              placeholder="enter amount"
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="flex flex-row justify-around m-4">
             <button
-              type="submit"
-              className="border-solid border-2 border-white"
-            >
-              Deposit
-            </button>
-            <button
-              className="border-solid border-2 border-white"
+              className="border-solid border-2 border-white w-[200px] rounded-2xl"
               onClick={onClose}
             >
               Cancel
+            </button>
+            <button
+              type="submit"
+              className="border-solid border-2 border-white w-[200px] rounded-2xl "
+            >
+              Deposit
             </button>
           </div>
         </form>

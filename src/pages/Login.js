@@ -32,20 +32,20 @@ const Login = () => {
   if (user) return <Navigate to={"/home2"} />;
 
   return (
-    <div className="bg-black text-white h-[100vh]  ">
+    <div className="bg-black text-white h-[100vh] hp-font ">
       <div>
-        <div className="flex justify-center text-6xl font-[] ">
+        <div className="flex justify-center text-9xl font-[] ">
           <h1>Unlock your vault</h1>
         </div>
 
-        <div className="w-[50%] m-[20%] mt-[0%] flex ">
+        <div className="w-[50%] m-[20%] mt-[0%] flex text-3xl ">
           <img src={gringotts} alt="gringotts bank " />
 
           {/* this next div is for the login funtionality */}
           <div className="flex justify-center items-center w-[50%] m-[20%]">
             <form>
               <div>
-                <div className="flex flex-col justify-center items-start ">
+                <div className="flex flex-col justify-center items-start m-4 ">
                   <label htmlFor="username">Username</label>
                   <input
                     type="text"
@@ -57,7 +57,7 @@ const Login = () => {
                   />
                 </div>
 
-                <div className="flex flex-col justify-center items-start">
+                <div className="flex flex-col justify-center items-start m-4">
                   <label htmlFor="password">Password</label>
                   <input
                     className="rounded-xl text-black"

@@ -33,9 +33,9 @@ const Register = () => {
 
   if (user) return <Navigate to={"/"} />;
   return (
-    <div className="bg-black text-white h-[100vh]  ">
+    <div className="bg-black text-white h-[100vh] hp-font ">
       <div>
-        <div className="flex justify-center text-6xl font-[] ">
+        <div className="flex justify-center text-9xl ">
           <h1>Register for a new vault</h1>
         </div>
 
@@ -45,8 +45,8 @@ const Register = () => {
           {/* this next div is for the login funtionality */}
           <div className="flex justify-center items-center w-[50%] m-[20%]">
             <form>
-              <div>
-                <div className="flex flex-col justify-center items-start ">
+              <div className="text-3xl">
+                <div className="flex flex-col justify-center items-start m-2 ">
                   <label htmlFor="username">Username</label>
                   <input
                     type="text"
@@ -58,7 +58,7 @@ const Register = () => {
                   />
                 </div>
 
-                <div className="flex flex-col justify-center items-start">
+                <div className="flex flex-col justify-center items-start m-2">
                   <label htmlFor="password">Password</label>
                   <input
                     className="rounded-xl text-black"
@@ -69,7 +69,8 @@ const Register = () => {
                     required
                   />
                 </div>
-                <div>
+
+                <div className="m-2">
                   <label htmlFor="image">Profile Image</label>
                   <input
                     type="file"
@@ -81,11 +82,11 @@ const Register = () => {
                   />
                 </div>
               </div>
-              <div className="flex justify-center">
+              <div>
                 <button
                   onClick={handleFormSubmit}
                   type="submit"
-                  className="rounded-xl bg-[#a79b8e] w-[100px] h-[30px] text-white m-4 "
+                  className="rounded-xl bg-[#a79b8e] w-[300px] h-[60px] text-white mt-4 mr-4  text-3xl "
                 >
                   Register
                 </button>
