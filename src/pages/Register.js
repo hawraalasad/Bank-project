@@ -47,7 +47,7 @@ const Register = () => {
             <form>
               <div>
                 <div className="flex flex-col justify-center items-start ">
-                  <label htmlFor="username">Name</label>
+                  <label htmlFor="username">Username</label>
                   <input
                     type="text"
                     id="username"
@@ -57,17 +57,7 @@ const Register = () => {
                     className="rounded-xl text-black p-4%"
                   />
                 </div>
-                <div className="flex flex-col justify-center items-start">
-                  <label htmlFor="email">Code</label>
-                  <input
-                    className="rounded-xl text-black"
-                    type="email"
-                    id="email"
-                    name="email"
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
+
                 <div className="flex flex-col justify-center items-start">
                   <label htmlFor="password">Password</label>
                   <input
@@ -95,7 +85,7 @@ const Register = () => {
                 <button
                   onClick={handleFormSubmit}
                   type="submit"
-                  className="rounded-xl bg-[#a79b8e] w-[100px] h-[30px] text-white "
+                  className="rounded-xl bg-[#a79b8e] w-[100px] h-[30px] text-white m-4 "
                 >
                   Register
                 </button>

@@ -16,17 +16,15 @@ const login = async (userInfo) => {
 
 const register = async (userInfo) => {
   try {
-    //This is for seding the request with files
     const formData = new FormData();
     for (const key in userInfo) {
       formData.append(key, userInfo[key]);
     }
-    // END
     const { data } = await instance.post(
       "/mini-project/api/auth/register",
       formData
     );
-    setToken(data.token); // <--- This
+    setToken(data.token);
     return data;
   } catch (error) {
     console.log(error);
@@ -52,12 +50,34 @@ const getAllUsers = async () => {
   return data;
 };
 
-const deposit = async () => {
-  instance.put("/mini-project/api/transactions/deposit");
+const deposit = async (amount) => {
+  try {
+    const { data } = await instance.put(
+      "/mini-project/api/transactions/deposit",
+      amount
+    );
+    return data;
+  } catch (error) {
+    console.error("Deposit error:", error);
+    throw new Error("Deposit failed");
+  }
 };
 
-const transfer = async () => {
-  instance.put("/mini-project/api/transactions/transfer/<username>");
+const transfer = async (amount) => {
+  const { data } = await instance.put(
+    "/mini-project/api/transactions/transfer/<username>",
+    amount
+  );
+  return data;
 };
 
-export { login, register, me, getAllUsers, logout, deposit, transfer };
+export {
+  login,
+  register,
+  me,
+  getAllUsers,
+  logout,
+  deposit,
+  transfer,
+  transactions,
+};

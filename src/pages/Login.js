@@ -5,6 +5,7 @@ import { Navigate } from "react-router-dom";
 import UserContext from "../context/UserContext";
 import { instance } from "../api";
 import { checkToken, setToken } from "../api/storage";
+import gringotts from "../assets/media/Untitled design (11).png";
 
 const Login = () => {
   const [userInfo, setUserInfo] = useState({});
@@ -32,52 +33,54 @@ const Login = () => {
 
   return (
     <div className="bg-black text-white h-[100vh]  ">
-      <div className="max-w-md w-full px-6 py-8 bg-black rounded-md shadow-md">
-        <h2 className="text-3xl text-white font-semibold mb-6">
-          Unlock your vault
-        </h2>
-        <form onSubmit={handleFormSubmit}>
-          <div className="mb-4">
-            <label
-              htmlFor="username"
-              className="block text-white text-sm font-medium mb-2"
-            >
-              Username
-            </label>
-            <input
-              type="username"
-              name="username"
-              id="username"
-              onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-700 rounded-md focus:outline-none focus:ring-2 text-black focus:ring-blue-500"
-              required
-            />
+      <div>
+        <div className="flex justify-center text-6xl font-[] ">
+          <h1>Unlock your vault</h1>
+        </div>
+
+        <div className="w-[50%] m-[20%] mt-[0%] flex ">
+          <img src={gringotts} alt="gringotts bank " />
+
+          {/* this next div is for the login funtionality */}
+          <div className="flex justify-center items-center w-[50%] m-[20%]">
+            <form>
+              <div>
+                <div className="flex flex-col justify-center items-start ">
+                  <label htmlFor="username">Username</label>
+                  <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    onChange={handleChange}
+                    required
+                    className="rounded-xl text-black p-4%"
+                  />
+                </div>
+
+                <div className="flex flex-col justify-center items-start">
+                  <label htmlFor="password">Password</label>
+                  <input
+                    className="rounded-xl text-black"
+                    type="password"
+                    id="password"
+                    name="password"
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+              </div>
+              <div className="flex justify-center">
+                <button
+                  onClick={handleFormSubmit}
+                  type="submit"
+                  className="rounded-xl bg-[#a79b8e] w-[100px] h-[30px] text-white m-4 "
+                >
+                  Login
+                </button>
+              </div>
+            </form>
           </div>
-          <div className="mb-6">
-            <label
-              htmlFor="password"
-              className="block text-white text-sm font-medium mb-2"
-            >
-              Password
-            </label>
-            <input
-              name="password"
-              type="password"
-              id="password"
-              onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-700 rounded-md focus:outline-none focus:ring-2 text-black focus:ring-blue-500"
-              required
-            />
-          </div>
-          <div className="flex justify-center">
-            <button
-              type="submit"
-              className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
-            >
-              Login
-            </button>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
   );
