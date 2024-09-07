@@ -6,6 +6,7 @@ import UserContext from "../context/UserContext";
 import { instance } from "../api";
 import { checkToken, setToken } from "../api/storage";
 import gringotts from "../assets/media/Untitled design (11).png";
+import welcome from "../assets/mp3/Welcome.mp3";
 
 const Login = () => {
   const [userInfo, setUserInfo] = useState({});
@@ -22,10 +23,9 @@ const Login = () => {
       setUser(checkToken());
     },
   });
+  const audio = new Audio(welcome);
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    // Add login logic here
+  const handleFormSubmit = () => {
     handleLogin();
   };
 
@@ -71,7 +71,11 @@ const Login = () => {
               </div>
               <div className="flex justify-center">
                 <button
-                  onClick={handleFormSubmit}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    audio.play();
+                    handleFormSubmit();
+                  }}
                   type="submit"
                   className="rounded-xl bg-[#a79b8e] w-[100px] h-[30px] text-white m-4 "
                 >

@@ -7,7 +7,7 @@ const login = async (userInfo) => {
       "/mini-project/api/auth/login",
       userInfo
     );
-    setToken(data.token); // <--- This
+    setToken(data.token);
     return data;
   } catch (error) {
     console.log(error);
@@ -54,7 +54,7 @@ const deposit = async (amount) => {
   try {
     const { data } = await instance.put(
       "/mini-project/api/transactions/deposit",
-      amount
+      { amount }
     );
     return data;
   } catch (error) {
@@ -63,12 +63,17 @@ const deposit = async (amount) => {
   }
 };
 
-const transfer = async (amount) => {
-  const { data } = await instance.put(
-    "/mini-project/api/transactions/transfer/<username>",
-    amount
-  );
-  return data;
+const transfer = async (amount, username) => {
+  try {
+    const { data } = await instance.put(
+      `/mini-project/api/transactions/transfer/${username}`,
+      { amount }
+    );
+    return data;
+  } catch (error) {
+    console.error("Transfer error:", error);
+    throw new Error("Transfer failed");
+  }
 };
 
 export {

@@ -15,12 +15,11 @@ const DepositModal = ({ onClose, isVisible }) => {
   };
   const handleSubmitAndClose = (e) => {
     handleFormSubmit(e);
-    onClose();
   };
 
   const { mutate, isError, error, isSuccess, isLoading } = useMutation({
     mutationKey: ["deposit"],
-    mutationFn: () => deposit(amount),
+    mutationFn: () => deposit(Number(amount)),
     onError: (err) => {
       console.error("Deposit failed:", err);
     },

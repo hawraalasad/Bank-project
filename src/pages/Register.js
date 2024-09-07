@@ -5,6 +5,7 @@ import gringotts from "../assets/media/Untitled design (11).png";
 import UserContext from "../context/UserContext";
 import { Navigate } from "react-router-dom";
 import { checkToken } from "../api/storage";
+import welcome from "../assets/mp3/Welcome.mp3";
 
 const Register = () => {
   const [userInfo, setUserInfo] = useState({});
@@ -84,7 +85,7 @@ const Register = () => {
               </div>
               <div>
                 <button
-                  onClick={handleFormSubmit}
+                  onClick={(handleFormSubmit, welcome.play())}
                   type="submit"
                   className="rounded-xl bg-[#a79b8e] w-[300px] h-[60px] text-white mt-4 mr-4  text-3xl "
                 >

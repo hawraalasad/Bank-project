@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { login } from "../api/auth";
 import { getAllUsers } from "../api/auth";
-import user from "./Users";
+import User from "./Users";
+import "../App.css";
 import { useQuery } from "@tanstack/react-query";
 import { me } from "../api/auth";
 import sortingHat from "../assets/media/SortingHat.png";
@@ -20,23 +21,23 @@ import LogoDisplay from "../component/LogoDisplay";
 const houses = [
   {
     name: "gryffindor",
-    logo: { gl },
-    sound: { gs },
+    logo: gl,
+    sound: gs,
   },
   {
     name: "slytherin",
-    logo: { sl },
-    sound: { ss },
+    logo: sl,
+    sound: ss,
   },
   {
     name: "hufflePuff",
-    logo: { hl },
-    sound: { hs },
+    logo: hl,
+    sound: hs,
   },
   {
     name: "ravenclaw",
-    logo: { rl },
-    sound: { rs },
+    logo: rl,
+    sound: rs,
   },
 ];
 
