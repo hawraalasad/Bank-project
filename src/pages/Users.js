@@ -2,17 +2,21 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { getAllUsers } from "../api/auth";
 import ProfileModal from "./TransferModal";
+import { useParams } from "react-router";
 
 const User = ({}) => {
   const { data: users } = useQuery({
     queryKey: ["users"],
     queryFn: getAllUsers,
   });
-
+  const [username, setUsername] = useState("");
   const [isVisible, setIsVisible] = useState(false);
   const onClose = () => setIsVisible(false);
-  const onOpen = () => setIsVisible(true);
-
+  const onOpen = (username) => {
+    setIsVisible(true);
+    setUsername(username);
+  };
+  console.log(username);
   return (
     <div className="bg-black min-h-screen h-screen flex items-center justify-center absolute inset-0 hp-font z-[-1]">
       <div className="max-w-[95%] overflow-scroll w-full px-6 py-8 bg-black rounded-md shadow-md max-h-[80%]">
@@ -40,7 +44,7 @@ const User = ({}) => {
                   Balance: {user.balance} Galleons
                 </h1>
                 <button
-                  onClick={onOpen}
+                  onClick={() => onOpen(user.username)}
                   className="hover:bg-white rounded-2xl w-[150px] text-3xl h-[36px] bg-[#a79b8d] m-5 "
                 >
                   Transfer
@@ -50,7 +54,13 @@ const User = ({}) => {
           ))}
         </div>
       </div>
-      {isVisible && <ProfileModal isVisible={isVisible} onClose={onClose} />}
+      {isVisible && (
+        <ProfileModal
+          isVisible={isVisible}
+          onClose={onClose}
+          username={username}
+        />
+      )}
     </div>
   );
 };

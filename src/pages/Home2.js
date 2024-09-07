@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { me } from "../api/auth";
 import { useQuery } from "@tanstack/react-query";
 import coins from "../assets/media/Username.png";
@@ -8,11 +8,19 @@ import DepositModal from "./DepositModal";
 import "../css/hp.css";
 
 const Home2 = () => {
-  const { data: myself } = useQuery({
+  const { data: myself, refetch } = useQuery({
     queryKey: ["me"],
     queryFn: me,
   });
   const [isVisible, setIsVisible] = useState(false);
+  const [balance, setBalance] = useState(0);
+
+  useEffect(() => {
+    if (myself) {
+      setBalance(myself.balance);
+    }
+  }, [myself]);
+
   const onClose = () => setIsVisible(false);
   const onOpen = () => setIsVisible(true);
   return (
@@ -22,9 +30,7 @@ const Home2 = () => {
         {/* div for text */}
         <div className="flex flex-col items-center p-[20px] gap-4 justify-center w-[50%] h-[100%]">
           <h1 className="text-[#5e564e] text-6xl ">Your available balance:</h1>
-          <h1 className="text-[#906319] text-5xl ">
-            {myself?.balance} Galleons
-          </h1>
+          <h1 className="text-[#906319] text-5xl ">{balance} Galleons</h1>
           <div className="flex flex-row gap-6 m-4">
             <button
               className="text-white border-white border-solid border-2 p-3 rounded-xl w-[120px] text-4xl "
@@ -42,7 +48,13 @@ const Home2 = () => {
           <img src={coins} />
         </div>
       </div>
-      {isVisible && <DepositModal isVisible={isVisible} onClose={onClose} />}
+      {isVisible && (
+        <DepositModal
+          isVisible={isVisible}
+          onClose={onClose}
+          refetch={refetch}
+        />
+      )}
     </div>
   );
 };

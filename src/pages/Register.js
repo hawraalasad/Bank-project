@@ -85,7 +85,7 @@ const Register = () => {
               </div>
               <div>
                 <button
-                  onClick={(handleFormSubmit, welcome.play())}
+                  onClick={handleFormSubmit}
                   type="submit"
                   className="rounded-xl bg-[#a79b8e] w-[300px] h-[60px] text-white mt-4 mr-4  text-3xl "
                 >

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { deposit } from "../api/auth";
 import { useMutation } from "@tanstack/react-query";
 import User from "./Users";
-const DepositModal = ({ onClose, isVisible }) => {
+const DepositModal = ({ onClose, isVisible, refetch }) => {
   const [amount, setAmount] = useState(0);
 
   const handleInputChange = (e) => {
@@ -26,6 +26,7 @@ const DepositModal = ({ onClose, isVisible }) => {
     onSuccess: () => {
       console.log("Deposit successful");
       onClose();
+      refetch();
     },
   });
 

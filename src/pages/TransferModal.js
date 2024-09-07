@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { transfer } from "../api/auth";
 import { useMutation } from "@tanstack/react-query";
 import User from "./Users";
-const ProfileModal = ({ onClose, isVisible }) => {
+const ProfileModal = ({ onClose, isVisible, username }) => {
   const [amount, setAmount] = useState(0);
-  const [username, setUsername] = useState("");
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
