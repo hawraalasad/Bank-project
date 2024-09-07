@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { me } from "../api/auth";
+import { me, withdraw } from "../api/auth";
 import { useQuery } from "@tanstack/react-query";
 import coins from "../assets/media/Username.png";
 import { deposit } from "../api/auth";
 import ProfileModal from "./TransferModal";
 import DepositModal from "./DepositModal";
+import WithdrawModal from "./WithdrawModal";
 import "../css/hp.css";
 
 const Home2 = () => {
@@ -38,7 +39,10 @@ const Home2 = () => {
             >
               Deposit
             </button>
-            <button className="text-white border-white border-solid border-2 p-3 rounded-xl w-[120px] text-4xl">
+            <button
+              className="text-white border-white border-solid border-2 p-3 rounded-xl w-[120px] text-4xl"
+              onClick={onOpen}
+            >
               Withdraw
             </button>
           </div>
@@ -50,6 +54,13 @@ const Home2 = () => {
       </div>
       {isVisible && (
         <DepositModal
+          isVisible={isVisible}
+          onClose={onClose}
+          refetch={refetch}
+        />
+      )}
+      {isVisible && (
+        <WithdrawModal
           isVisible={isVisible}
           onClose={onClose}
           refetch={refetch}
