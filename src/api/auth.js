@@ -76,6 +76,19 @@ const transfer = async (amount, username) => {
   }
 };
 
+const withdraw = async (amount) => {
+  try {
+    const { data } = await instance.put(
+      "/mini-project/api/transactions/withdraw",
+      { amount }
+    );
+    return data;
+  } catch (error) {
+    console.error("Withdraw  error:", error);
+    throw new Error("Withdraw  failed");
+  }
+};
+
 export {
   login,
   register,
@@ -85,4 +98,5 @@ export {
   deposit,
   transfer,
   transactions,
+  withdraw,
 };
