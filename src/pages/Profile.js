@@ -52,7 +52,9 @@ const Profile = () => {
   const [showLogo, setShowLogo] = useState(false);
   const [show, setShow] = useState(false);
   const editOpen = () => setShow(true);
-  const editClose = () => setShow(false);
+  const editClose = () => {
+    setShow(false);
+  };
 
   const sort = () => {
     const randomHouse = houses[Math.floor(Math.random() * houses.length)];

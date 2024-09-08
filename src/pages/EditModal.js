@@ -1,6 +1,24 @@
+import { useMutation } from "@tanstack/react-query";
 import React from "react";
+import { useState } from "react";
+import { edit } from "../api/auth";
 
 const EditModal = () => {
+  const [image, setImage] = useState();
+
+  const handleChange = (e) => {
+    setImage({ [e.target.name]: e.target.files[0] });
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    editMutate();
+  };
+
+  const { mutate: editMutate } = useMutation({
+    mutationKey: ["edit"],
+    mutationFn: () => edit(image),
+  });
   return (
     <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-10 ">
       <div className="text-white bg-black p-[20px] rounded-md flex flex-col justify-center items-center ">
