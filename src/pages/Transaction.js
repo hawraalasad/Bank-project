@@ -47,19 +47,39 @@ const Transaction = () => {
         </div>
 
         <div className="items-row space-x-20  flex items-center justify-center">
-          <table class="table-fixed">
+          <table class="table-fixed flex flex-col">
             <thead>
               <tr>
-                <th>Amount</th>
-                <th>Date</th>
-                <th>Operation</th>
+                {/* <th>id</th> */}
+                <div>
+                  <th>Amount</th>
+                </div>
+                <div>
+                  <th>Date</th>
+                </div>
+                <div>
+                  <th>Operation</th>
+                </div>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>{WithdrawModal} ijwoidqjedok</td>
-                <td>7-8-2024</td>
-                <td>Deposit</td>
+                {transaction?.map((transaction) => (
+                  <div>
+                    {/* <div>
+                      <td>{transaction?.id}</td>
+                    </div> */}
+                    <div>
+                      <td>{transaction?.amount}</td>
+                    </div>
+                    <div>
+                      <td>{transaction?.createdAt}</td>
+                    </div>
+                    <div>
+                      <td>{transaction.type}</td>
+                    </div>
+                  </div>
+                ))}
               </tr>
             </tbody>
           </table>
