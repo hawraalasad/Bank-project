@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useMutation } from "@tanstack/react-query";
 import { login } from "../api/auth";
 import WithdrawModal from "./WithdrawModal";
+import Filter from "./Filter";
 
 const Transaction = () => {
   const { data: myself } = useQuery({
@@ -12,6 +13,10 @@ const Transaction = () => {
     queryFn: me,
   });
   console.log(myself);
+
+  const [show, setShow] = useState(false);
+  const onOpen = () => setShow(true);
+  const onClose = () => setShow(false);
 
   const { data: transaction } = useQuery({
     queryKey: ["transactions"],
@@ -44,6 +49,12 @@ const Transaction = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
+          <button
+            className="bg-white text-black m-4 p-4"
+            onClick={() => onOpen()}
+          >
+            filter
+          </button>
         </div>
 
         <div className="items-row space-x-20  flex items-center justify-center">
@@ -85,6 +96,7 @@ const Transaction = () => {
           </table>
         </div>
       </div>
+      {show && <Filter onClose={onClose} />}
     </div>
   );
 };
