@@ -17,6 +17,7 @@ const Transaction = () => {
     queryKey: ["transactions"],
     queryFn: transactions,
   });
+  console.log(transaction);
   const [search, setSearch] = useState("");
 
   return (
@@ -37,6 +38,7 @@ const Transaction = () => {
 
         <div className="flex justify-center">
           <input
+            className="text-black"
             type="text"
             placeholder="Search by amount or date"
             value={search}

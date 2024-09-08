@@ -14,6 +14,7 @@ const Home2 = () => {
     queryFn: me,
   });
   const [isVisible, setIsVisible] = useState(false);
+  const [show, setShow] = useState(false);
   const [balance, setBalance] = useState(0);
 
   useEffect(() => {
@@ -24,6 +25,9 @@ const Home2 = () => {
 
   const onClose = () => setIsVisible(false);
   const onOpen = () => setIsVisible(true);
+  const onClose2 = () => setShow(false);
+  const onOpen2 = () => setShow(true);
+
   return (
     <div className="bg-black min-h-screen h-screen flex items-center justify-center absolute inset-0 hp-font z-[-1]">
       {/* card div */}
@@ -41,7 +45,7 @@ const Home2 = () => {
             </button>
             <button
               className="text-white border-white border-solid border-2 p-3 rounded-xl w-[120px] text-4xl"
-              onClick={onOpen}
+              onClick={onOpen2}
             >
               Withdraw
             </button>
@@ -59,12 +63,8 @@ const Home2 = () => {
           refetch={refetch}
         />
       )}
-      {isVisible && (
-        <WithdrawModal
-          isVisible={isVisible}
-          onClose={onClose}
-          refetch={refetch}
-        />
+      {show && (
+        <WithdrawModal show={show} onClose2={onClose2} refetch={refetch} />
       )}
     </div>
   );

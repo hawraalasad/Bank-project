@@ -3,7 +3,7 @@ import { withdraw } from "../api/auth";
 import { useMutation } from "@tanstack/react-query";
 import User from "./Users";
 
-const WithdrawModal = ({ onClose, isVisible, refetch }) => {
+const WithdrawModal = ({ onClose2, show, refetch }) => {
   const [amount, setAmount] = useState(0);
 
   const handleInputChange = (e) => {
@@ -26,12 +26,12 @@ const WithdrawModal = ({ onClose, isVisible, refetch }) => {
     },
     onSuccess: () => {
       console.log("Withdraw successful");
-      onClose();
+      onClose2();
       refetch();
     },
   });
 
-  if (!isVisible) {
+  if (!show) {
     return null;
   }
 
@@ -55,7 +55,7 @@ const WithdrawModal = ({ onClose, isVisible, refetch }) => {
           <div className="flex flex-row justify-around m-4">
             <button
               className="border-solid border-2 border-white w-[200px] rounded-2xl"
-              onClick={onClose}
+              onClick={onClose2}
             >
               Cancel
             </button>

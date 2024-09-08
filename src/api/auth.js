@@ -88,6 +88,22 @@ const withdraw = async (amount) => {
     throw new Error("Withdraw  failed");
   }
 };
+// const edit = async (formData) => {
+//   try {
+//     const formData = new FormData();
+//     for (const key in image) {
+//       formData.append(key, image[key]);
+//     }
+//     const { data } = await instance.put(
+//       "/mini-project/api/auth/profile",
+//       formData
+//     );
+//     setToken(data.token);
+//     return data;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 export {
   login,

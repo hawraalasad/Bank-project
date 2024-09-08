@@ -17,6 +17,7 @@ import rl from "../assets/media/RavenclawLogo.png";
 import rs from "../assets/mp3/Ravenclaw.mp3";
 import LoadingSpinner from "../component/Loading";
 import LogoDisplay from "../component/LogoDisplay";
+import EditModal from "./EditModal";
 
 const houses = [
   {
@@ -49,6 +50,9 @@ const Profile = () => {
   const [house, setHouse] = useState(null);
   const [loading, setLoading] = useState(false);
   const [showLogo, setShowLogo] = useState(false);
+  const [show, setShow] = useState(false);
+  const editOpen = () => setShow(true);
+  const editClose = () => setShow(false);
 
   const sort = () => {
     const randomHouse = houses[Math.floor(Math.random() * houses.length)];
@@ -65,6 +69,9 @@ const Profile = () => {
   const onClose = () => {
     setShowLogo(false);
     setHouse(null);
+  };
+  const edit = () => {
+    setShow(true);
   };
   return (
     <div
@@ -94,8 +101,11 @@ const Profile = () => {
 
           <p className="py-2">Balance: {myself?.balance} Galleons</p>
           <div className="flex justify-center items-center text-3xl">
-            <button className="hover:bg-[#5e564e] hover:text-white px-3 py-2 rounded-3xl h-[60px] w-[140px] text-center bg-[#a79b8d] text-black m-4">
-              Earn Galleons
+            <button
+              className="hover:bg-[#5e564e] hover:text-white px-3 py-2 rounded-3xl h-[60px] w-[140px] text-center bg-[#a79b8d] text-black m-4"
+              onClick={() => edit()}
+            >
+              Edit Profile
             </button>
             <button className=" hover:bg-[#5e564e] hover:text-white px-3 py-2 rounded-3xl  h-[60px] w-[140px] text-center bg-[#a79b8d] text-black m-4 ">
               Cast A Spell
@@ -105,6 +115,7 @@ const Profile = () => {
       </div>
       {loading && <LoadingSpinner />}
       {showLogo && <LogoDisplay logo={house.logo} onClose={onClose} />}
+      {show && <EditModal />}
     </div>
   );
 };
