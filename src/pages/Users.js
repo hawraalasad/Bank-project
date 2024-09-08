@@ -5,7 +5,7 @@ import ProfileModal from "./TransferModal";
 import { useParams } from "react-router";
 
 const User = ({}) => {
-  const { data: users } = useQuery({
+  const { data: users, refetch } = useQuery({
     queryKey: ["users"],
     queryFn: getAllUsers,
   });
@@ -16,7 +16,6 @@ const User = ({}) => {
     setIsVisible(true);
     setUsername(username);
   };
-  console.log(username);
   return (
     <div className="bg-black min-h-screen h-screen flex items-center justify-center absolute inset-0 hp-font z-[-1]">
       <div className="max-w-[95%] overflow-scroll w-full px-6 py-8 bg-black rounded-md shadow-md max-h-[80%]">
@@ -59,6 +58,7 @@ const User = ({}) => {
           isVisible={isVisible}
           onClose={onClose}
           username={username}
+          refetch={refetch}
         />
       )}
     </div>

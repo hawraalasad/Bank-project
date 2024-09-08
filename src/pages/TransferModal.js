@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import { transfer } from "../api/auth";
 import { useMutation } from "@tanstack/react-query";
 import User from "./Users";
-const ProfileModal = ({ onClose, isVisible, username }) => {
+const ProfileModal = ({ onClose, isVisible, username, refetch }) => {
   const [amount, setAmount] = useState(0);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
     mutate(Number(amount));
+  };
+  const handleInputChange = (e) => {
+    setAmount(e.target.value);
   };
   const handleSubmitAndClose = (e) => {
     handleFormSubmit(e);
@@ -22,6 +25,7 @@ const ProfileModal = ({ onClose, isVisible, username }) => {
     onSuccess: () => {
       console.log("Transfer successful");
       onClose();
+      refetch();
     },
   });
 
@@ -41,6 +45,7 @@ const ProfileModal = ({ onClose, isVisible, username }) => {
             type="number"
             required
             placeholder="enter amount"
+            onChange={handleInputChange}
           />
           <div className="flex flex-row justify-around">
             <button

@@ -12,7 +12,7 @@ const Transaction = () => {
   });
   console.log(myself);
 
-  const { data: mytransaction } = useQuery({
+  const { data: transaction } = useQuery({
     queryKey: ["transactions"],
     queryFn: transactions,
   });
@@ -39,7 +39,7 @@ const Transaction = () => {
             </thead>
             <tbody>
               <tr>
-                <td>{myself?.balance} ijwoidqjedok</td>
+                <td>{myself?.balance}</td>
                 <td>7-8-2024</td>
                 <td>Deposit</td>
               </tr>
