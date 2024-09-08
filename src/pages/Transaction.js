@@ -57,41 +57,59 @@ const Transaction = () => {
           </button>
         </div>
 
-        <div className="items-row space-x-20  flex items-center justify-center">
-          <table class="table-fixed flex flex-col">
+        <div className="items-row space-x-20 flex items-center justify-center">
+          <table className="table-fixed w-full">
             <thead>
-              <tr>
-                {/* <th>id</th> */}
-                <div>
-                  <th>Amount</th>
-                </div>
-                <div>
-                  <th>Date</th>
-                </div>
-                <div>
-                  <th>Operation</th>
-                </div>
+              <tr className="flex w-full justify-between">
+                {/* Column headers */}
+                <th className="w-1/3 text-center">Amount</th>
+                <th className="w-1/3 text-center">Date</th>
+                <th className="w-1/3 text-center">Operation</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                {transaction?.map((transaction) => (
-                  <div>
-                    {/* <div>
-                      <td>{transaction?.id}</td>
-                    </div> */}
-                    <div>
-                      <td>{transaction?.amount}</td>
-                    </div>
-                    <div>
-                      <td>{transaction?.createdAt}</td>
-                    </div>
-                    <div>
-                      <td>{transaction.type}</td>
-                    </div>
-                  </div>
-                ))}
-              </tr>
+              {/* Mapping through transactions */}
+              {transaction?.map((transaction, index) => {
+                // Normalize transaction type to avoid case-sensitivity issues
+                const transactionType = transaction?.type?.toLowerCase();
+
+                return (
+                  <tr className="flex w-full justify-between" key={index}>
+                    {/* Transaction details */}
+                    <td className="w-1/3 text-center">
+                      {/* Conditional styling for the amount */}
+                      <span
+                        className={
+                          transactionType === "deposit"
+                            ? "text-green-500"
+                            : transactionType === "withdraw"
+                            ? "text-red-500"
+                            : "text-red-500"
+                        }
+                      >
+                        {transaction?.amount}
+                      </span>
+                    </td>
+                    <td className="w-1/3 text-center">
+                      {new Date(transaction?.createdAt).toLocaleDateString()}
+                    </td>
+                    <td className="w-1/3 text-center">
+                      {/* Conditional styling for the type */}
+                      <span
+                        className={
+                          transactionType === "deposit"
+                            ? "text-green-500"
+                            : transactionType === "withdraw"
+                            ? "text-red-500"
+                            : "text-red-500"
+                        }
+                      >
+                        {transaction?.type}
+                      </span>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
