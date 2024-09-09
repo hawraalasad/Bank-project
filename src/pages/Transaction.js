@@ -6,6 +6,7 @@ import { useMutation } from "@tanstack/react-query";
 import { login } from "../api/auth";
 import WithdrawModal from "./WithdrawModal";
 import Filter from "./Filter";
+import DatePicker from "react-date-picker";
 
 const Transaction = () => {
   const { data: myself } = useQuery({
@@ -18,6 +19,7 @@ const Transaction = () => {
   const [type, setType] = useState("");
   const [filter, setFilter] = useState([]);
   const [amount, setAmount] = useState([]);
+  const [date, setDate] = useState("");
 
   const handleType = (event) => {
     const selectedType = event.target.value;
@@ -40,16 +42,14 @@ const Transaction = () => {
     setFilter(transactionAmount);
   };
 
-  // const handleDate = (event) => {
-  //   const selectedDate = event.target.value;
-  //   setDate(selectedDate);
-  //   const transactionDate = transaction?.filter(
-  //     (transaction) =>
-  //       selectedDate === "" ||
-  //       transaction.createdAt.toLocaleString().includes(selectedDate)
-  //   );
-  //   setFilter(transactionAmount);
-  // };
+  const handleDate = () => {
+    const transactionDate = transaction?.filter(
+      (transaction) =>
+        new Date(date.from) <= new Date(transaction.createdAt) &&
+        new Date(date.to) >= new Date(transaction.createdAt)
+    );
+    setFilter(transactionDate);
+  };
 
   const { data: transaction } = useQuery({
     queryKey: ["transactions"],
@@ -99,7 +99,33 @@ const Transaction = () => {
             <option value="deposit">deposit</option>
           </select>
         </div>
-
+        <div className="m-20 flex justify-center ">
+          {/* <DatePicker
+            onChange={onDateChange}
+            value={dateValue}
+            autoFocus={true}
+            className="date-picker"
+            closeCalendar={false}
+          /> */}
+          From
+          <input
+            className="m-5 text-black"
+            type="date"
+            onChange={(e) => setDate({ ...date, from: e.target.value })}
+          />
+          To
+          <input
+            className="m-5 text-black"
+            type="date"
+            onChange={(e) => setDate({ ...date, to: e.target.value })}
+          />
+          <button
+            className="bg-black text-white m-8 border-solid border-2 border-white rounded-3xl p-6 "
+            onClick={handleDate}
+          >
+            Search
+          </button>
+        </div>
         <div className="items-row space-x-20 flex items-center justify-center p-20">
           <table className="table-fixed w-full">
             <thead>
