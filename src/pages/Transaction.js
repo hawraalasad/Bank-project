@@ -6,7 +6,6 @@ import { useMutation } from "@tanstack/react-query";
 import { login } from "../api/auth";
 import WithdrawModal from "./WithdrawModal";
 import Filter from "./Filter";
-import DatePicker from "react-date-picker";
 
 const Transaction = () => {
   const [query, setQuery] = useState("");
@@ -18,9 +17,7 @@ const Transaction = () => {
   });
   console.log(myself);
 
-  const [query, setQuery] = useState("");
-  const [type, setType] = useState("");
-  const [filter, setFilter] = useState([]);
+  const [filtered, setFiltered] = useState([]);
   const [amount, setAmount] = useState([]);
   const [date, setDate] = useState("");
 
@@ -31,7 +28,7 @@ const Transaction = () => {
       (transaction) => selectedType === "" || transaction.type === selectedType
     );
 
-    setFilter(transactionType);
+    setFiltered(transactionType);
   };
 
   const handleAmount = (event) => {
@@ -42,7 +39,7 @@ const Transaction = () => {
         selectedAmount === "" ||
         transaction.amount.toLocaleString().includes(selectedAmount)
     );
-    setFilter(transactionAmount);
+    setFiltered(transactionAmount);
   };
 
   const handleDate = () => {
@@ -51,7 +48,7 @@ const Transaction = () => {
         new Date(date.from) <= new Date(transaction.createdAt) &&
         new Date(date.to) >= new Date(transaction.createdAt)
     );
-    setFilter(transactionDate);
+    setFiltered(transactionDate);
   };
 
   const { data: transaction } = useQuery({
