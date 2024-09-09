@@ -57,13 +57,13 @@ const Transaction = () => {
       className="bg-black text-white min-h-screen hp-font text-4xl"
       key={myself?.id}
     >
-      <div className="flex justify-center">
-        <h1> Transastion Page </h1>
+      <div className="flex justify-center hp-font">
+        <h1 className="hp-font"> Transastion Page </h1>
       </div>
 
       <div>
         <div className="flex justify-center">
-          <h1>
+          <h1 className="hp-font">
             Hello {myself?.username}, your balance is{" "}
             {myself?.balance.toLocaleString()}
           </h1>
@@ -103,13 +103,13 @@ const Transaction = () => {
           /> */}
           From
           <input
-            className="m-5 text-black"
+            className=" rounded-3xl m-5 text-black"
             type="date"
             onChange={(e) => setDate({ ...date, from: e.target.value })}
           />
           To
           <input
-            className="m-5 text-black"
+            className="m-5 rounded-3xl  text-black"
             type="date"
             onChange={(e) => setDate({ ...date, to: e.target.value })}
           />

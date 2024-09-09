@@ -12,6 +12,7 @@ import Users from "./pages/Users";
 import Transaction from "./pages/Transaction";
 import Profile from "./pages/Profile";
 import Home2 from "./pages/Home2";
+import Spells from "./pages/Spells";
 const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const router = createBrowserRouter([
@@ -44,6 +45,7 @@ const router = createBrowserRouter([
         path: "/transaction",
         element: <Transaction />,
       },
+      { path: "/spells", element: <Spells /> },
     ],
   },
 ]);
