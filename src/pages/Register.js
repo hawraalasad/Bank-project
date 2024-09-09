@@ -29,8 +29,8 @@ const Register = () => {
     e.preventDefault();
     // Add register logic here
     registerMutate();
-    console.log(userInfo);
   };
+  console.log(userInfo);
 
   if (user) return <Navigate to={"/"} />;
   return (
@@ -87,7 +87,7 @@ const Register = () => {
                 <button
                   onClick={handleFormSubmit}
                   type="submit"
-                  className="rounded-xl bg-[#a79b8e] w-[300px] h-[60px] text-white mt-4 mr-4  text-3xl "
+                  className="rounded-xl bg-[#a79b8e] w-[300px] h-[60px] text-white mt-4 mr-4  text-3xl"
                 >
                   Register
                 </button>

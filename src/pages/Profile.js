@@ -24,21 +24,25 @@ const houses = [
     name: "gryffindor",
     logo: gl,
     sound: gs,
+    color: "#740001 ",
   },
   {
     name: "slytherin",
     logo: sl,
     sound: ss,
+    color: "#2A623D",
   },
   {
     name: "hufflePuff",
     logo: hl,
     sound: hs,
+    color: "#ecb939",
   },
   {
     name: "ravenclaw",
     logo: rl,
     sound: rs,
+    color: "#002F6C",
   },
 ];
 
@@ -51,14 +55,18 @@ const Profile = () => {
   const [loading, setLoading] = useState(false);
   const [showLogo, setShowLogo] = useState(false);
   const [show, setShow] = useState(false);
+  const [backgroundColor, setBackgroundColor] = useState("");
   const editOpen = () => setShow(true);
-  const editClose = () => setShow(false);
+  const editClose = () => {
+    setShow(false);
+  };
 
   const sort = () => {
     const randomHouse = houses[Math.floor(Math.random() * houses.length)];
     setHouse(randomHouse);
     setLoading(true);
     setShowLogo(false);
+    setBackgroundColor(randomHouse.color);
     const audio = new Audio(randomHouse.sound);
     audio.play();
     audio.onended = () => {
@@ -68,17 +76,18 @@ const Profile = () => {
   };
   const onClose = () => {
     setShowLogo(false);
-    setHouse(null);
   };
   const edit = () => {
     setShow(true);
   };
+
   return (
     <div
-      className="bg-black text-white min-h-screen flex justify-center items-center h-[100vh] flex-col hp-font"
+      className=" bg-black text-white min-h-screen flex justify-center items-center h-[100vh] flex-col hp-font"
       key={myself?.id}
+      style={{ backgroundColor }}
     >
-      <div className="flex">
+      <div className="flex ">
         <img src={sortingHat} alt="sorting hat" className="size-[120px] m-2" />
         <button
           className="bg-[#a79b8d] text-black m-7 w-[300px] h-[100px] rounded-[30px] hover:rounded-xl transition-all duration-100 ease-in-out text-4xl"
@@ -99,7 +108,9 @@ const Profile = () => {
         <div className="flex justify-center items-center flex-col text-5xl">
           <h2 className="py-2">{myself?.username} </h2>
 
-          <p className="py-2">Balance: {myself?.balance} Galleons</p>
+          <p className="py-2">
+            Balance: {myself?.balance.toLocaleString()} Galleons
+          </p>
           <div className="flex justify-center items-center text-3xl">
             <button
               className="hover:bg-[#5e564e] hover:text-white px-3 py-2 rounded-3xl h-[60px] w-[140px] text-center bg-[#a79b8d] text-black m-4"
