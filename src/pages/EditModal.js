@@ -10,6 +10,7 @@ const EditModal = () => {
     setImage({ [e.target.name]: e.target.files[0] });
   };
 
+  console.log(image);
   const handleFormSubmit = (e) => {
     e.preventDefault();
     editMutate();

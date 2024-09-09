@@ -40,7 +40,7 @@ const User = ({}) => {
                 </h3>
                 <p className="text-gray-300">{user.email}</p>
                 <h1 className="text-[#f7e1ae]">
-                  Balance: {user.balance} Galleons
+                  Balance: {user.balance.toLocaleString()} Galleons
                 </h1>
                 <button
                   onClick={() => onOpen(user.username)}

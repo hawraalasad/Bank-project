@@ -14,9 +14,18 @@ const Transaction = () => {
   });
   console.log(myself);
 
-  const [show, setShow] = useState(false);
-  const onOpen = () => setShow(true);
-  const onClose = () => setShow(false);
+  const [query, setQuery] = useState("");
+  const [type, setType] = useState("");
+  const [filter, setFilter] = useState([]);
+
+  const handleType = (event) => {
+    const selectedType = event.target.value;
+    setType(selectedType);
+    const transactionType = transaction?.filter(
+      (transaction) => selectedType === "" || transaction.type === selectedType
+    );
+    setFilter(transactionType);
+  };
 
   const { data: transaction } = useQuery({
     queryKey: ["transactions"],
@@ -37,7 +46,8 @@ const Transaction = () => {
       <div>
         <div className="flex justify-center">
           <h1>
-            {myself?.username} Balance is {myself?.balance}
+            Hello {myself?.username}, your balance is{" "}
+            {myself?.balance.toLocaleString()}
           </h1>
         </div>
 
@@ -49,12 +59,18 @@ const Transaction = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <button
-            className="bg-white text-black m-4 p-4"
-            onClick={() => onOpen()}
+          <select
+            className="bg-black text-white m-8 border-solid border-2 border-white rounded-3xl p-6 "
+            onChange={(type) => handleType(type)}
           >
-            filter
-          </button>
+            <option value="">All</option>
+            <option value="transfer" className="hover:bg-white">
+              transfer
+            </option>
+
+            <option value="withdraw">withdraw</option>
+            <option value="deposit">deposit</option>
+          </select>
         </div>
 
         <div className="items-row space-x-20 flex items-center justify-center">
@@ -69,7 +85,7 @@ const Transaction = () => {
             </thead>
             <tbody>
               {/* Mapping through transactions */}
-              {transaction?.map((transaction, index) => {
+              {filter?.map((transaction, index) => {
                 // Normalize transaction type to avoid case-sensitivity issues
                 const transactionType = transaction?.type?.toLowerCase();
 
@@ -87,7 +103,7 @@ const Transaction = () => {
                             : "text-red-500"
                         }
                       >
-                        {transaction?.amount}
+                        {transaction?.amount.toLocaleString()}
                       </span>
                     </td>
                     <td className="w-1/3 text-center">
@@ -114,7 +130,6 @@ const Transaction = () => {
           </table>
         </div>
       </div>
-      {show && <Filter onClose={onClose} />}
     </div>
   );
 };
