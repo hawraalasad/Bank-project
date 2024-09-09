@@ -6,6 +6,7 @@ import { useMutation } from "@tanstack/react-query";
 import { login } from "../api/auth";
 import WithdrawModal from "./WithdrawModal";
 import Filter from "./Filter";
+import DatePicker from "react-date-picker";
 
 const Transaction = () => {
   const [query, setQuery] = useState("");
@@ -17,9 +18,40 @@ const Transaction = () => {
   });
   console.log(myself);
 
+  const [query, setQuery] = useState("");
+  const [type, setType] = useState("");
+  const [filter, setFilter] = useState([]);
+  const [amount, setAmount] = useState([]);
+  const [date, setDate] = useState("");
+
   const handleType = (event) => {
     let selectedType = event.target.value;
     setType(selectedType);
+    const transactionType = transaction?.filter(
+      (transaction) => selectedType === "" || transaction.type === selectedType
+    );
+
+    setFilter(transactionType);
+  };
+
+  const handleAmount = (event) => {
+    const selectedAmount = event.target.value;
+    setAmount(selectedAmount);
+    const transactionAmount = transaction?.filter(
+      (transaction) =>
+        selectedAmount === "" ||
+        transaction.amount.toLocaleString().includes(selectedAmount)
+    );
+    setFilter(transactionAmount);
+  };
+
+  const handleDate = () => {
+    const transactionDate = transaction?.filter(
+      (transaction) =>
+        new Date(date.from) <= new Date(transaction.createdAt) &&
+        new Date(date.to) >= new Date(transaction.createdAt)
+    );
+    setFilter(transactionDate);
   };
 
   const { data: transaction } = useQuery({
@@ -51,12 +83,15 @@ const Transaction = () => {
 
         <div className="flex justify-center">
           <input
-            className="text-black"
+            className="bg-black text-white m-8 border-solid border-2 border-white rounded-3xl p-6"
             type="text"
-            placeholder="Search by amount or date"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search by amount "
+            onChange={handleAmount}
           />
+          <button className="bg-black text-white m-8 border-solid border-2 border-white rounded-3xl p-6 ">
+            Search
+          </button>
+
           <select
             className="bg-black text-white m-8 border-solid border-2 border-white rounded-3xl p-6 "
             onChange={(type) => handleType(type)}
@@ -70,8 +105,34 @@ const Transaction = () => {
             <option value="deposit">deposit</option>
           </select>
         </div>
-
-        <div className="items-row space-x-20 flex items-center justify-center">
+        <div className="m-20 flex justify-center ">
+          {/* <DatePicker
+            onChange={onDateChange}
+            value={dateValue}
+            autoFocus={true}
+            className="date-picker"
+            closeCalendar={false}
+          /> */}
+          From
+          <input
+            className="m-5 text-black"
+            type="date"
+            onChange={(e) => setDate({ ...date, from: e.target.value })}
+          />
+          To
+          <input
+            className="m-5 text-black"
+            type="date"
+            onChange={(e) => setDate({ ...date, to: e.target.value })}
+          />
+          <button
+            className="bg-black text-white m-8 border-solid border-2 border-white rounded-3xl p-6 "
+            onClick={handleDate}
+          >
+            Search
+          </button>
+        </div>
+        <div className="items-row space-x-20 flex items-center justify-center p-20">
           <table className="table-fixed w-full">
             <thead>
               <tr className="flex w-full justify-between">
@@ -88,10 +149,10 @@ const Transaction = () => {
                 const transactionType = transaction?.type?.toLowerCase();
 
                 return (
-                  <tr className="flex w-full justify-between" key={index}>
+                  <tr className="flex w-full justify-between">
                     {/* Transaction details */}
                     <td className="w-1/3 text-center">
-                      {/* Conditional styling for the amount */}
+                      {/* Conditional styling for the amount red for withdraw and tranfer, green for deposit */}
                       <span
                         className={
                           transactionType === "deposit"
@@ -108,7 +169,7 @@ const Transaction = () => {
                       {new Date(transaction?.createdAt).toLocaleDateString()}
                     </td>
                     <td className="w-1/3 text-center">
-                      {/* Conditional styling for the type */}
+                      {/* Conditional styling for the type red for withdraw and tranfer, green for deposit */}
                       <span
                         className={
                           transactionType === "deposit"
