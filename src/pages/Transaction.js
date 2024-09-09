@@ -35,18 +35,24 @@ const Transaction = () => {
             {myself?.username} Balance is {myself?.balance}
           </h1>
         </div>
-
-        <div className="flex justify-center">
-          <input
-            className="text-black"
-            type="text"
-            placeholder="Search by amount or date"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
+        <div className="flex-row gap-20">
+          <div className="flex justify-center pr-20">
+            <input
+              className="text-black"
+              type="text"
+              placeholder="Search by amount or date"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <div>
+              <button className="bg-black text-white border-white border-solid border-2 p-3 rounded-xl w-[120px] text-4xl ">
+                Search
+              </button>
+            </div>
+          </div>
         </div>
 
-        <div className="items-row space-x-20 flex items-center justify-center">
+        <div className="items-row space-x-20 flex items-center justify-center p-20">
           <table className="table-fixed w-full">
             <thead>
               <tr className="flex w-full justify-between">
@@ -58,15 +64,15 @@ const Transaction = () => {
             </thead>
             <tbody>
               {/* Mapping through transactions */}
-              {transaction?.map((transaction, index) => {
+              {transaction?.map((transaction) => {
                 // Normalize transaction type to avoid case-sensitivity issues
                 const transactionType = transaction?.type?.toLowerCase();
 
                 return (
-                  <tr className="flex w-full justify-between" key={index}>
+                  <tr className="flex w-full justify-between">
                     {/* Transaction details */}
                     <td className="w-1/3 text-center">
-                      {/* Conditional styling for the amount */}
+                      {/* Conditional styling for the amount red for withdraw and tranfer, green for deposit */}
                       <span
                         className={
                           transactionType === "deposit"
@@ -83,7 +89,7 @@ const Transaction = () => {
                       {new Date(transaction?.createdAt).toLocaleDateString()}
                     </td>
                     <td className="w-1/3 text-center">
-                      {/* Conditional styling for the type */}
+                      {/* Conditional styling for the type red for withdraw and tranfer, green for deposit */}
                       <span
                         className={
                           transactionType === "deposit"
