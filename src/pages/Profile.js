@@ -55,6 +55,7 @@ const Profile = () => {
   const [loading, setLoading] = useState(false);
   const [showLogo, setShowLogo] = useState(false);
   const [show, setShow] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
   const [backgroundColor, setBackgroundColor] = useState("");
   const editOpen = () => setShow(true);
   const editClose = () => {
@@ -80,6 +81,8 @@ const Profile = () => {
   const edit = () => {
     setShow(true);
   };
+
+  console.log(myself);
 
   return (
     <div
@@ -114,7 +117,7 @@ const Profile = () => {
           <div className="flex justify-center items-center text-3xl">
             <button
               className="hover:bg-[#5e564e] hover:text-white px-3 py-2 rounded-3xl h-[60px] w-[140px] text-center bg-[#a79b8d] text-black m-4"
-              onClick={() => edit()}
+              onClick={() => setShowEdit(true)}
             >
               Edit Profile
             </button>
@@ -126,7 +129,7 @@ const Profile = () => {
       </div>
       {loading && <LoadingSpinner />}
       {showLogo && <LogoDisplay logo={house.logo} onClose={onClose} />}
-      {show && <EditModal />}
+      {showEdit && <EditModal show={showEdit} setShowModal={setShowEdit} />}
     </div>
   );
 };

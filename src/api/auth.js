@@ -91,14 +91,11 @@ const withdraw = async (amount) => {
 const edit = async (image) => {
   try {
     const formData = new FormData();
-    for (const key in image) {
-      formData.append(key, image[key]);
-    }
+    formData.append("image", image);
     const { data } = await instance.put(
       "/mini-project/api/auth/profile",
       formData
     );
-    setToken(data.token);
     return data;
   } catch (error) {
     console.log(error);

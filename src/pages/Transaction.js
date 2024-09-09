@@ -8,23 +8,18 @@ import WithdrawModal from "./WithdrawModal";
 import Filter from "./Filter";
 
 const Transaction = () => {
+  const [query, setQuery] = useState("");
+  const [type, setType] = useState("");
+  const [search, setSearch] = useState("");
   const { data: myself } = useQuery({
     queryKey: ["me"],
     queryFn: me,
   });
   console.log(myself);
 
-  const [query, setQuery] = useState("");
-  const [type, setType] = useState("");
-  const [filter, setFilter] = useState([]);
-
   const handleType = (event) => {
-    const selectedType = event.target.value;
+    let selectedType = event.target.value;
     setType(selectedType);
-    const transactionType = transaction?.filter(
-      (transaction) => selectedType === "" || transaction.type === selectedType
-    );
-    setFilter(transactionType);
   };
 
   const { data: transaction } = useQuery({
@@ -32,7 +27,10 @@ const Transaction = () => {
     queryFn: transactions,
   });
   console.log(transaction);
-  const [search, setSearch] = useState("");
+
+  const filter = transaction?.filter((trans) => {
+    return trans.type.includes(type);
+  });
 
   return (
     <div
