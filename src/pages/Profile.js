@@ -122,7 +122,7 @@ const Profile = () => {
               Edit Profile
             </button>
             <button className=" hover:bg-[#5e564e] hover:text-white px-3 py-2 rounded-3xl  h-[60px] w-[140px] text-center bg-[#a79b8d] text-black m-4 ">
-              Cast A Spell
+              Learn
             </button>
           </div>
         </div>

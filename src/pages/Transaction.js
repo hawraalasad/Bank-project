@@ -81,10 +81,10 @@ const Transaction = () => {
           </button>
 
           <select
-            className="bg-black text-white m-8 border-solid border-2 border-white rounded-3xl p-6 "
+            className="bg-black hp-font text-white m-8 border-solid border-2 border-white rounded-3xl p-6 "
             onChange={(type) => handleType(type)}
           >
-            <option value="">All</option>
+            <option className="hp-font" value="">All</option>
             <option value="transfer" className="hover:bg-white">
               transfer
             </option>
@@ -156,12 +156,7 @@ const Transaction = () => {
                     <td className="w-1/3 text-center">
                       {new Date(transaction?.createdAt)
                         .toLocaleDateString("en-US")
-                        .slice(
-                          0,
-                          new Date(transaction?.createdAt)
-                            .toLocaleDateString("en-US")
-                            .indexOf(",")
-                        )}
+                      }
                     </td>
                     <td className="w-1/3 text-center">
                       {/* Conditional styling for the type red for withdraw and tranfer, green for deposit */}
